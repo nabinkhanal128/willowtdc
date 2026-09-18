@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="490" height="470" viewBox="0 0 490 470">
+    <defs>
+      <linearGradient id="ceng" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#EEF3EE"/>
+        <stop offset="1" stop-color="#CFE0D6"/>
+      </linearGradient>
+    </defs>
+    <path d="M250 20 C 370 8, 470 80, 470 210 C 470 330, 400 410, 270 430
+             C 140 450, 20 380, 20 240 C 20 100, 130 32, 250 20 Z" fill="url(#ceng)"/>
+
+    <!-- soft connecting path between stations -->
+    <path d="M100 340 Q 160 260 230 300 T 360 220 T 300 110"
+          stroke="#3F5B4E" stroke-width="3" fill="none" stroke-linecap="round"
+          stroke-dasharray="1 14" opacity="0.45"/>
+
+    <!-- station 1: cognitive -->
+    <circle cx="100" cy="340" r="34" fill="#6B9080"/>
+    <path d="M100 322 C90 322 85 330 88 337 C83 340 83 347 88 350 C88 357 95 361 100 358
+             C105 361 112 357 112 350 C117 347 117 340 112 337 C115 330 110 322 100 322 Z" fill="#FAF7F2"/>
+
+    <!-- station 2: communication -->
+    <circle cx="230" cy="300" r="30" fill="#E8956B"/>
+    <path d="M214 288 h32 a6 6 0 0 1 6 6 v12 a6 6 0 0 1 -6 6 h-18 l-9 8 v-8 h-5 a6 6 0 0 1 -6 -6 v-12 a6 6 0 0 1 6 -6 Z" fill="#FAF7F2"/>
+
+    <!-- station 3: creative -->
+    <circle cx="360" cy="220" r="34" fill="#F2C94C"/>
+    <path d="M360 202 C348 202 340 212 340 222 C340 232 348 236 353 233
+             C356 231 355 227 352 225 C349 223 349 219 353 218 C368 218 380 212 377 206 C374 202 367 202 360 202 Z" fill="#2B2438" opacity="0.85"/>
+
+    <!-- station 4: social & emotional -->
+    <circle cx="300" cy="110" r="30" fill="#3F5B4E"/>
+    <path d="M300 128 C286 116 288 102 298 100 C300 100 300 102 300 103
+             C300 102 300 100 302 100 C312 102 314 116 300 128 Z" fill="#FAF7F2"/>
+
+    <!-- station 5: movement -->
+    <circle cx="160" cy="150" r="26" fill="#C96F45"/>
+    <path d="M150 162 q6 -14 10 -18 M172 140 q-6 14 -10 18" stroke="#FAF7F2" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+    <!-- station 6: skills -->
+    <circle cx="380" cy="360" r="26" fill="#6B9080"/>
+    <rect x="368" y="362" width="8" height="10" rx="2" fill="#FAF7F2"/>
+    <rect x="378" y="356" width="8" height="16" rx="2" fill="#FAF7F2"/>
+    <rect x="388" y="350" width="8" height="22" rx="2" fill="#FAF7F2"/>
+
+    <!-- ambient dots -->
+    <circle cx="60" cy="200" r="5" fill="#F2C94C" opacity="0.6"/>
+    <circle cx="420" cy="150" r="6" fill="#E8956B" opacity="0.5"/>
+    <circle cx="230" cy="420" r="5" fill="#3F5B4E" opacity="0.5"/>
+    </svg>
