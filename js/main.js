@@ -377,6 +377,30 @@
       link.href = "https://wa.me/" + number + "?text=" + encodeURIComponent(text);
     }
 
+    /* hCaptcha. The token is single-use and expires after a couple of minutes,
+       so it must be reset whenever a send fails -- otherwise a retry replays a
+       spent token, is rejected again, and the visitor is stuck for good. */
+    function captchaBox() {
+      return form.querySelector('textarea[name="h-captcha-response"]');
+    }
+
+    function resetCaptcha() {
+      if (window.hcaptcha && typeof window.hcaptcha.reset === "function") {
+        try { window.hcaptcha.reset(); } catch (err) { /* widget not ready yet */ }
+      }
+    }
+
+    function validateCaptcha() {
+      const wrap = $(".captcha-field", form);
+      const box = captchaBox();
+      // If the widget never rendered (script blocked, offline), don't lock the
+      // visitor out of the form -- Web3Forms still rejects unsolved submissions
+      // server-side, which is where the real enforcement lives.
+      const ok = !box || box.value.trim() !== "";
+      if (wrap) wrap.classList.toggle("has-error", !ok);
+      return ok;
+    }
+
     function validate() {
       let valid = true;
       $all("[required]", form).forEach((field) => {
@@ -394,8 +418,10 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      if (!validate()) {
-        showToast("Please fill in the highlighted fields.");
+      const fieldsOk = validate();
+      const captchaOk = validateCaptcha();
+      if (!fieldsOk || !captchaOk) {
+        showToast(fieldsOk ? "Please complete the robot check." : "Please fill in the highlighted fields.");
         const firstError = $(".has-error input, .has-error textarea, .has-error select", form);
         if (firstError) firstError.focus();
         return;
@@ -424,6 +450,7 @@
         showToast("Message sent -- thank you!");
       } catch (err) {
         console.error("Contact form send failed:", err);
+        resetCaptcha();
         button.disabled = false;
         button.textContent = "Send Message";
         setHint(FALLBACK, true);

@@ -177,6 +177,17 @@
               </label>
               <span class="error-msg">Please confirm you're okay being contacted.</span>
             </div>
+
+            <!-- hCaptcha, hosted by Web3Forms (data-captcha="true" means no
+                 sitekey of our own is needed). The widget alone proves nothing:
+                 hCaptcha MUST also be switched on for this form in the Web3Forms
+                 dashboard, or the server accepts submissions that never solved
+                 it and this is decoration. -->
+            <div class="field captcha-field">
+              <div class="h-captcha" data-captcha="true"></div>
+              <span class="error-msg">Please confirm you are not a robot.</span>
+            </div>
+
             <button type="submit" class="btn btn-primary btn-block" id="submitButton">Send Message</button>
             <p class="hint" id="formHint" role="status" aria-live="polite"></p>
           </form>
@@ -335,6 +346,8 @@
 
 <button class="back-to-top" aria-label="Back to top">&#8593;</button>
 
+<!-- Renders the hCaptcha widget above. Must load before main.js reads its token. -->
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="js/main.js"></script>
 </body>
 </html>

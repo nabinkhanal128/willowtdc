@@ -906,6 +906,16 @@ p{ margin: 0 0 var(--sp-3); color: var(--text-soft); }
 }
 #contactForm.is-hidden{ display: none; }
 
+/* hCaptcha widget. Its iframe is a fixed 303px wide, so it is centred and
+   allowed to scale down rather than overflow the card on small phones. */
+.captcha-field{ display: flex; flex-direction: column; align-items: center; }
+/* overflow-x:auto, never hidden: the hCaptcha iframe is a fixed 303px, and on a
+   very narrow phone (320px) clipping it would hide the checkbox and make the
+   form impossible to submit. A scrollbar is ugly; an unreachable captcha loses
+   the enquiry. */
+.captcha-field .h-captcha{ max-width: 100%; overflow-x: auto; }
+.captcha-field.has-error .error-msg{ display: block; text-align: center; }
+
 /* WhatsApp CTA inside the contact-form success panel. Brand green rather than
    a site token on purpose -- people recognise the colour, and it reads as
    "this opens WhatsApp" instead of "this is another site button". */
